@@ -18,7 +18,7 @@ public class UserController {
 
     private static final Log LOG = LogFactory.getLog(UserController.class);
 
-    @PostMapping("api/1.0/users")
+    @PostMapping("api/1.0/user")
     public void createUser(@RequestBody User User){
         userService.save(User);
         LOG.info(User.getUsername());

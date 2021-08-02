@@ -6,7 +6,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReservationService {
+
     ReservationRepository reservationRepository;
+
+    public ReservationService(ReservationRepository reservationRepository){
+        this.reservationRepository = reservationRepository;
+    }
+
     public void save(Reservation reservation) {
         reservationRepository.save(reservation);
     }

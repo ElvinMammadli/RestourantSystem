@@ -9,8 +9,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RestourantService {
-    RestourantRepository reservationRepository;
+
+    RestourantRepository RestourantRepository;
+
+    public  RestourantService(RestourantRepository RestourantRepository){
+        this.RestourantRepository=RestourantRepository;
+    }
     public void save(Restourant reservation) {
-        reservationRepository.save(reservation);
+        RestourantRepository.save(reservation);
     }
 }
