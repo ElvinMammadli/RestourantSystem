@@ -4,6 +4,8 @@ import com.example.Restourant.Model.Reservation;
 import com.example.Restourant.Repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReservationService {
 
@@ -15,5 +17,9 @@ public class ReservationService {
 
     public void save(Reservation reservation) {
         reservationRepository.save(reservation);
+    }
+
+    public List<Reservation> getReservations() {
+        return reservationRepository.findAll();
     }
 }
