@@ -5,6 +5,7 @@ import com.example.Restourant.Repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -21,5 +22,9 @@ public class ReservationService {
 
     public List<Reservation> getReservations() {
         return reservationRepository.findAll();
+    }
+
+    public Optional<Reservation> getReservationById(Long id){
+        return reservationRepository.findById(id);
     }
 }

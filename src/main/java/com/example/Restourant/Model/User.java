@@ -1,19 +1,26 @@
 package com.example.Restourant.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
+    @Column(name = "user_id")
+    private long id;
+    private AppUserRole appUserRole;
+    private List<Reservation> reservation = new ArrayList<>();
+
+    @Column(name = "username")
     private String username;
+
     private String password;
+
+
 
     public long getId() {
         return id;
@@ -37,5 +44,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password);
     }
 }
