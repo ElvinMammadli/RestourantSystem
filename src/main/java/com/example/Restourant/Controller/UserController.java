@@ -1,6 +1,5 @@
 package com.example.Restourant.Controller;
 
-import com.example.Restourant.Exception.UserNotFoundException;
 import com.example.Restourant.Model.User;
 import com.example.Restourant.Service.UserService;
 import org.apache.commons.logging.Log;
@@ -48,6 +47,9 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
+
+
+
 
 
 

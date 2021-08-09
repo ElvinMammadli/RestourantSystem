@@ -3,8 +3,6 @@ package com.example.Restourant.Service;
 import com.example.Restourant.Exception.UserNotFoundException;
 import com.example.Restourant.Model.User;
 import com.example.Restourant.Repository.UserRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +22,8 @@ public class UserService {
     }
 
 
-    public User  findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUsername  (String username) throws UserNotFoundException{
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException());
     }
 
     public Optional<User> findById(Long id){
@@ -33,6 +31,10 @@ public class UserService {
     }
 
     public List<User> findUsers(){return userRepository.findAll();}
+
+    public User findByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
 
     public  void deleteUser(Long id) {
         userRepository.deleteById(id);
