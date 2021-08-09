@@ -4,23 +4,40 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name="User")
+
 public class User {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(name = "user_id")
     private long id;
-    private AppUserRole appUserRole;
-    private List<Reservation> reservation = new ArrayList<>();
 
-    @Column(name = "username")
+    @Enumerated(EnumType.STRING)
+    private AppUserRole appUserRole;
+
+    @Column(unique=true)
     private String username;
+
+    private boolean ispresent = false;
+
+    public boolean isIspresent() {
+        return ispresent;
+    }
+
+    public void setIspresent(boolean ispresent) {
+        this.ispresent = ispresent;
+    }
 
     private String password;
 
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
 
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
 
     public long getId() {
         return id;
@@ -58,4 +75,6 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, username, password);
     }
+
+
 }

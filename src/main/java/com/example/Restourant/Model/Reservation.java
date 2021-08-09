@@ -11,8 +11,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne()
-    @JoinColumn(name="role_id", referencedColumnName = "role_id", insertable = false, updatable = false)
 
 
     private String date;
