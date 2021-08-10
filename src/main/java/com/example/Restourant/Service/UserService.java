@@ -23,11 +23,13 @@ public class UserService {
 
 
     public User findByUsername  (String username) throws UserNotFoundException{
-        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException());
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User Not Found username:"+username));
     }
 
-    public Optional<User> findById(Long id){
-        return userRepository.findById(id);
+    public User findById(Long id){
+
+        return userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("User Not Found id:"+id));
     }
 
     public List<User> findUsers(){return userRepository.findAll();}
