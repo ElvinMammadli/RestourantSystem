@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RestourantRepository extends JpaRepository< Restourant,Long> {
-   Optional<Restourant>  findByUsername(String username);
+public interface RestourantRepository extends JpaRepository<Restourant,Long> {
+   Optional<Restourant>  findByname(String name);
 }

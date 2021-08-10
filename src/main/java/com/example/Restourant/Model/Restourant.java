@@ -16,7 +16,7 @@ public class Restourant {
     private String reservationNumber;
 
 
-    public long getId() {
+    public long getId   () {
         return id;
     }
 

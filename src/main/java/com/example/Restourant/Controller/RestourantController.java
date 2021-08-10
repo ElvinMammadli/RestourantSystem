@@ -1,16 +1,14 @@
 package com.example.Restourant.Controller;
 
 
+import com.example.Restourant.Exception.RestourantNotFoundException;
 import com.example.Restourant.Model.Restourant;
 import com.example.Restourant.Service.RestourantService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestourantController {
@@ -24,7 +22,12 @@ public class RestourantController {
     @ResponseStatus(HttpStatus.CREATED)
     public void CreateRestourant(@RequestBody Restourant restourant){
         restourantService.save(restourant);
-        LOG.info(restourant.getName());
-
     }
+    @GetMapping("api/1.0/restourant/id/{id}")
+    public Restourant getUserById(@RequestBody Long id){
+        return restourantService.findById(id).orElseThrow(()->new RestourantNotFoundException("Restourant Not Find"));
+    }
+
+
+
 }

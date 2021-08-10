@@ -17,7 +17,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    private static final Log LOG = LogFactory.getLog(UserController.class);
 
     @PostMapping("api/1/user")
     @ResponseStatus(HttpStatus.CREATED)
