@@ -3,16 +3,11 @@ package com.example.Restourant.Model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Optional;
 
 @Entity
 public class Reservation {
 
-    public Reservation(String date, Restourant restourant, User user) {
-        this.date = date;
-        this.restourant = restourant;
-        this.user = user;
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +22,7 @@ public class Reservation {
     private Restourant restourant;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     public Restourant getRestourant() {

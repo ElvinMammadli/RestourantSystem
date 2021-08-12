@@ -26,7 +26,7 @@ public class User {
     private String username;
 
     @OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="id", referencedColumnName="id")
+    @JoinColumn(name="id")
     private List<Reservation> reservations = new ArrayList<>();
 
     public List<Reservation> getReservations() {

@@ -35,10 +35,23 @@ public class ReservationService {
     }
 
     public void createReservation(ReservationDto reservationDto){
+        System.out.println(reservationDto.getRestourant_id());
+        System.out.println(reservationDto.getUser_id());
+        System.out.println(reservationDto.getDate());
+
         Restourant restourant=restourantRepository.findById(reservationDto.getRestourant_id()).get();
         User user=userRepository.findById(reservationDto.getUser_id()).get();
-        Reservation reservation= new Reservation(reservationDto.getDate(),restourant,user);
-        reservationRepository.save(reservation);
+        Reservation reservation= new Reservation();
+        reservation.setDate(reservationDto.getDate());
+        reservation.setUser(user);
+        reservation.setRestourant(restourant);
+
+        System.out.println(reservation.getUser().getUsername());
+        System.out.println(reservation.getUser().getId());
+        System.out.println(reservation.getRestourant().getId());
+        System.out.println(reservation.getRestourant().getName());
+
+        //reservationRepository.save(reservation);
     }
 
     public void deleteReservation(Long id){
