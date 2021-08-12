@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RestourantController {
     private static final Log LOG = LogFactory.getLog(UserController.class);
@@ -26,6 +28,12 @@ public class RestourantController {
     @GetMapping("api/1.0/restourant/id/{id}")
     public Restourant getUserById(@RequestBody Long id){
         return restourantService.findById(id).orElseThrow(()->new RestourantNotFoundException("Restourant Not Find"));
+    }
+
+
+    @GetMapping("/api/1.0/restourants")
+    public List<Restourant> getRestourants(){
+        return restourantService.findRestourants();
     }
 
 

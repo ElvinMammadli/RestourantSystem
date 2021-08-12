@@ -1,5 +1,7 @@
 package com.example.Restourant.Model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,14 +13,34 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
 
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
 
+    private String password;
+
+    @NotNull
     @Column(unique=true)
     private String username;
 
+    @OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="id", referencedColumnName="id")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public void enrollReservations(Reservation reservation) {
+        reservations.add(reservation);
+
+    }
     private boolean ispresent = false;
 
     public boolean isIspresent() {
@@ -29,7 +51,6 @@ public class User {
         this.ispresent = ispresent;
     }
 
-    private String password;
 
     public AppUserRole getAppUserRole() {
         return appUserRole;

@@ -3,34 +3,47 @@ package com.example.Restourant.Model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 public class Reservation {
 
+    public Reservation(String date, Restourant restourant, User user) {
+        this.date = date;
+        this.restourant = restourant;
+        this.user = user;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id")
     private long id;
 
-
-
     private String date;
-    private long RestourantId;
-    private long UserId;
 
-    public long getRestourantId() {
-        return RestourantId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restourant_id", referencedColumnName = "id")
+    private Restourant restourant;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private User user;
+
+    public Restourant getRestourant() {
+        return restourant;
     }
 
-    public void setRestourantId(long restourantId) {
-        RestourantId = restourantId;
+    public void setRestourant(Restourant restourant) {
+        this.restourant = restourant;
     }
 
-    public long getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        UserId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {

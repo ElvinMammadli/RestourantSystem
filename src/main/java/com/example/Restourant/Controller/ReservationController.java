@@ -1,5 +1,6 @@
 package com.example.Restourant.Controller;
 
+import com.example.Restourant.DTO.ReservationDto;
 import com.example.Restourant.Model.Reservation;
 import com.example.Restourant.Service.ReservationService;
 import org.apache.commons.logging.Log;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ReservationController {
@@ -18,17 +18,17 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    @PostMapping("api/1.0/reservations")
+    @PostMapping("api/1.0/create/reservation")
     @ResponseStatus(HttpStatus.CREATED)
-    public void CreateReservation(@RequestBody Reservation reservation){
-        reservationService.save(reservation);
-        LOG.info(reservation.getDate());
+    public void CreateReservation(@RequestBody ReservationDto reservationDto){
+       reservationService.createReservation(reservationDto);
+        System.out.println(reservationDto.getRestourant_id());
+
     }
 
     @RequestMapping("api/1.0/getreservation")
     public List<Reservation> getReservations(){
         return reservationService.getReservations();
-
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.Restourant.Model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -9,12 +11,27 @@ public class Restourant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name ="id")
     private long id;
 
+    @NotNull
     private String name;
+
     private String password;
     private String reservationNumber;
 
+    @OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="id")
+    private List<Reservation> reservations =new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     public long getId   () {
         return id;
