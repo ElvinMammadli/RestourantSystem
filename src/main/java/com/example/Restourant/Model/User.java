@@ -25,8 +25,7 @@ public class User {
     @Column(unique=true)
     private String username;
 
-    @OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
     public List<Reservation> getReservations() {

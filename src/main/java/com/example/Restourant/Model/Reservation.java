@@ -17,12 +17,12 @@ public class Reservation {
     private String date;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restourant_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restourant_id",unique = true)
     private Restourant restourant;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Restourant getRestourant() {

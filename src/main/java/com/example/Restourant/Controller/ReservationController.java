@@ -20,9 +20,8 @@ public class ReservationController {
 
     @PostMapping("api/1.0/create/reservation")
     @ResponseStatus(HttpStatus.CREATED)
-    public void CreateReservation(@RequestBody ReservationDto reservationDto){
-       reservationService.createReservation(reservationDto);
-        System.out.println(reservationDto.getRestourant_id());
+    public void CreateReservation(@RequestBody Reservation reservation){
+       reservationService.createReservation(reservation);
 
     }
 

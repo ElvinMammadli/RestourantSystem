@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-
+@Table
 public class Restourant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(name ="id")
+    @Column(name ="id",unique = true)
     private long id;
 
     @NotNull
@@ -21,8 +20,7 @@ public class Restourant {
     private String password;
     private String reservationNumber;
 
-    @OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restourant")
     private List<Reservation> reservations =new ArrayList<>();
 
     public List<Reservation> getReservations() {
