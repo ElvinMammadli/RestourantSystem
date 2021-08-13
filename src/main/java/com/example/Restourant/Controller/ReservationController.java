@@ -27,8 +27,8 @@ public class ReservationController {
 
     @PostMapping("api/1.0/create/reservation")
     @ResponseStatus(HttpStatus.CREATED)
-    public void CreateReservation(@RequestBody Reservation reservation1){
-        reservationService.createReservation(reservation1);
+    public void CreateReservation(@RequestBody Reservation reservation){
+        reservationService.createReservation(reservation);
 
     }
 

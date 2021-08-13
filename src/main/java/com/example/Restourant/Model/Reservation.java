@@ -2,6 +2,7 @@ package com.example.Restourant.Model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -10,9 +11,9 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation( String date, Restourant restourant, User user) {
+    public Reservation(Date date, Restourant restourant, User user) {
 
-        this.date = date;
+        this.date=date;
         this.restourant = restourant;
         this.user = user;
     }
@@ -22,7 +23,8 @@ public class Reservation {
     @Column(name ="id")
     private long id;
 
-    private String date;
+    @Column(name="date",unique = true)
+    private Date date;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,11 +59,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
