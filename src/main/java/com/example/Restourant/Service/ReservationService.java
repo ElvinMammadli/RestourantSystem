@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.Restourant.Model.AppUserRole.USER;
+
 @Service
 public class ReservationService {
 
@@ -34,10 +36,13 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public void createReservation(Reservation reservation){
-        System.out.println(reservation.getUser().getId());
-        System.out.println(reservation.getRestourant().getId());
-        reservationRepository.save(reservation);
+    public void createReservation(Reservation reservation1){
+        //User user= new User(USER,"3","FEFE",null,false);
+        //userRepository.save(user);
+        //Restourant restourant=new Restourant("efefe","21312","343",null);
+        //restourantRepository.save(restourant);
+        //Reservation reservation=new Reservation("343",restourant,user);
+        reservationRepository.save(reservation1);
     }
 
     public void deleteReservation(Long id){

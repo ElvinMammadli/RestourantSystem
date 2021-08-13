@@ -10,19 +10,28 @@ import java.util.*;
 
 public class User {
 
+    public User(){}
+
+    public User(AppUserRole appUserRole, String password, String username, List<Reservation> reservations, boolean ispresent) {
+        this.appUserRole = appUserRole;
+        this.password = password;
+        this.username = username;
+        this.reservations = reservations;
+        this.ispresent = ispresent;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
 
+
+
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
 
     private String password;
 
-    @NotNull
-    @Column(unique=true)
     private String username;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")

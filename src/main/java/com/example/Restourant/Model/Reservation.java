@@ -8,6 +8,14 @@ import java.util.Objects;
 public class Reservation {
 
 
+    public Reservation(){}
+
+    public Reservation( String date, Restourant restourant, User user) {
+
+        this.date = date;
+        this.restourant = restourant;
+        this.user = user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +26,11 @@ public class Reservation {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restourant_id",unique = true)
+    @JoinColumn(name = "restourant_id",referencedColumnName = "id")
     private Restourant restourant;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
     public Restourant getRestourant() {

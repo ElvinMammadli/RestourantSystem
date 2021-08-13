@@ -9,9 +9,19 @@ import java.util.*;
 @Table
 public class Restourant {
 
+    public Restourant(){}
+
+    public Restourant( String name, String password, String reservationNumber, List<Reservation> reservations) {
+
+        this.name = name;
+        this.password = password;
+        this.reservationNumber = reservationNumber;
+        this.reservations = reservations;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id",unique = true)
+    @Column(name ="id")
     private long id;
 
     @NotNull
