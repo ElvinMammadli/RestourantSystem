@@ -11,12 +11,11 @@ public class Restourant {
 
     public Restourant(){}
 
-    public Restourant( String name, String password, String reservationNumber, List<Reservation> reservations) {
+    public Restourant( String name, String password, String reservationNumber) {
 
         this.name = name;
         this.password = password;
         this.reservationNumber = reservationNumber;
-        this.reservations = reservations;
     }
 
     @Id
@@ -29,17 +28,6 @@ public class Restourant {
 
     private String password;
     private String reservationNumber;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restourant")
-    private List<Reservation> reservations =new ArrayList<>();
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
 
     public long getId   () {
         return id;

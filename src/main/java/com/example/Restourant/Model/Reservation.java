@@ -27,12 +27,12 @@ public class Reservation {
     private Date date;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restourant_id",referencedColumnName = "id")
+    @ManyToOne(targetEntity = Restourant.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "USER_ID",referencedColumnName = "id")
     private Restourant restourant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @ManyToOne(targetEntity = User.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "RESTOURANT_ID",referencedColumnName = "id")
     private User user;
 
     public Restourant getRestourant() {

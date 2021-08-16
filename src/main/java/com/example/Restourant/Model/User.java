@@ -12,11 +12,10 @@ public class User {
 
     public User(){}
 
-    public User(AppUserRole appUserRole, String password, String username, List<Reservation> reservations, boolean ispresent) {
+    public User(AppUserRole appUserRole, String password, String username, boolean ispresent) {
         this.appUserRole = appUserRole;
         this.password = password;
         this.username = username;
-        this.reservations = reservations;
         this.ispresent = ispresent;
     }
 
@@ -34,21 +33,8 @@ public class User {
 
     private String username;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Reservation> reservations = new ArrayList<>();
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
-    public void enrollReservations(Reservation reservation) {
-        reservations.add(reservation);
-
-    }
     private boolean ispresent = false;
 
     public boolean isIspresent() {
