@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -17,32 +18,53 @@ import java.util.Map;
 @RestControllerAdvice
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @NotNull
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  @NotNull HttpHeaders headers,
-                                                                  @NotNull HttpStatus status,
-                                                                  @NotNull WebRequest request) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach(error ->{
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
+    private class JsonResponse {
+        String message;
+        int httpStatus ;
+        String model;
+        public JsonResponse() {
+        }
 
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        public JsonResponse(String message, int httpStatus ,String model) {
+            super();
+            this.model =model;
+            this.message = message;
+            this.httpStatus = httpStatus;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public void setModel(String model) {
+            this.model = model;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public int getHttpStatus() {
+            return httpStatus;
+        }
+
+        public void setHttpStatus(int httpStatus) {
+            this.httpStatus = httpStatus;
+        }
+
     }
 
-
-    @ExceptionHandler(RestourantNotFoundException.class)
-    public ResponseEntity<?> RestourantNotFoundExceptionHandler(RestourantNotFoundException exception)  {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    @ExceptionHandler({ RuntimeException.class })
+    public ResponseEntity<JsonResponse> handleRuntimeException(
+            Exception ex, WebRequest request) {
+        return new ResponseEntity<JsonResponse>(
+                new JsonResponse(ex.getMessage(), 400 ,"USER"), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<?> UserNotFoundExceptionHandler(UserNotFoundException exception)  {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
 
 
 
