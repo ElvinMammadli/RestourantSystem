@@ -20,18 +20,21 @@ public class RestourantController {
     @Autowired
     RestourantService restourantService;
 
-    @PostMapping("api/1.0/restourant")
+    @PostMapping("/api/1.0/restourant")
     @ResponseStatus(HttpStatus.CREATED)
     public void CreateRestourant(@RequestBody Restourant restourant){
         restourantService.save(restourant);
     }
-    @GetMapping("api/1.0/restourant/id/{id}")
-    public Restourant getUserById(@RequestBody Long id){
-        return restourantService.findById(id).orElseThrow(()->new RestourantNotFoundException("Restourant Not Find"));
+
+    @GetMapping("/api/1/restourant/{id}")
+    public Restourant getRestourantById(@PathVariable  Long id){
+        return restourantService.findById(id).orElseThrow(()
+                        ->new RestourantNotFoundException("Restourant cant find")
+                );
     }
 
 
-    @GetMapping("/api/1.0/restourants")
+    @GetMapping("/api/1/restourants")
     public List<Restourant> getRestourants(){
         return restourantService.findRestourants();
     }

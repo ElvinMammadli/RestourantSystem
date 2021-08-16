@@ -1,6 +1,5 @@
 package com.example.Restourant.Controller;
 
-import com.example.Restourant.DTO.ReservationDto;
 import com.example.Restourant.Model.Reservation;
 import com.example.Restourant.Model.Restourant;
 import com.example.Restourant.Model.User;
@@ -25,14 +24,14 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    @PostMapping("api/1.0/create/reservation")
+    @PostMapping("api/1/create/reservation")
     @ResponseStatus(HttpStatus.CREATED)
     public void CreateReservation(@RequestBody Reservation reservation){
         reservationService.createReservation(reservation);
 
     }
 
-    @RequestMapping("api/1.0/getreservation")
+    @RequestMapping("api/1/getreservation")
     public List<Reservation> getReservations(){
         return reservationService.getReservations();
     }

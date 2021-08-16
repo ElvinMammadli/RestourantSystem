@@ -1,9 +1,13 @@
 package com.example.Restourant.Service;
 
+import com.example.Restourant.Exception.ReservationNotFoundException;
 import com.example.Restourant.Model.Restourant;
 import com.example.Restourant.Repository.RestourantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +28,11 @@ public class RestourantService {
 
     public Optional<Restourant> findById(Long id) {
         return restourantRepository.findById(id);
-
     }
 
-    public Optional<Restourant> findByUsername(String username){
+
+
+    public Restourant findByUsername(String username){
         return restourantRepository.findByname(username);
     }
 
