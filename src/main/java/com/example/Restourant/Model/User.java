@@ -1,7 +1,5 @@
 package com.example.Restourant.Model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,6 +9,17 @@ import java.util.*;
 public class User {
 
     public User(){}
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", appUserRole=" + appUserRole +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", ispresent=" + ispresent +
+                '}';
+    }
 
     public User(AppUserRole appUserRole, String password, String username, boolean ispresent) {
         this.appUserRole = appUserRole;

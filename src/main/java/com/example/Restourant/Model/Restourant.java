@@ -57,6 +57,16 @@ public class Restourant {
         return reservationNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Restourant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", reservationNumber='" + reservationNumber + '\'' +
+                '}';
+    }
+
     public void setReservationNumber(String reservationNumber) {
         this.reservationNumber = reservationNumber;
     }
