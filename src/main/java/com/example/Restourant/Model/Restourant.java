@@ -11,7 +11,7 @@ public class Restourant {
 
     public Restourant(){}
 
-    public Restourant( String name, String password, String reservationNumber) {
+    public Restourant( String name, String password, Long reservationNumber) {
 
         this.name = name;
         this.password = password;
@@ -23,14 +23,34 @@ public class Restourant {
     @Column(name ="id")
     private long id;
 
-    @NotNull
+    @Column(name="name",unique = true)
     private String name;
 
+    private String address;
     private String password;
-    private String reservationNumber;
+    private long reservationNumber;
 
     public long getId   () {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Restourant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                ", reservationNumber='" + reservationNumber + '\'' +
+                '}';
     }
 
     public void setId(long id) {
@@ -53,21 +73,11 @@ public class Restourant {
         this.password = password;
     }
 
-    public String getReservationNumber() {
+    public long getReservationNumber() {
         return reservationNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Restourant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", reservationNumber='" + reservationNumber + '\'' +
-                '}';
-    }
-
-    public void setReservationNumber(String reservationNumber) {
+    public void setReservationNumber(long reservationNumber) {
         this.reservationNumber = reservationNumber;
     }
 

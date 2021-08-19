@@ -14,18 +14,16 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", appUserRole=" + appUserRole +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
-                ", ispresent=" + ispresent +
                 '}';
     }
 
-    public User(AppUserRole appUserRole, String password, String username, boolean ispresent) {
-        this.appUserRole = appUserRole;
+    public User( String password, String username) {
+
         this.password = password;
         this.username = username;
-        this.ispresent = ispresent;
+
     }
 
     @Id
@@ -33,35 +31,10 @@ public class User {
     @Column(name = "id")
     private long id;
 
-
-
-    @Enumerated(EnumType.STRING)
-    private AppUserRole appUserRole;
-
     private String password;
 
+    @Column(name="username",unique = true)
     private String username;
-
-
-
-    private boolean ispresent = false;
-
-    public boolean isIspresent() {
-        return ispresent;
-    }
-
-    public void setIspresent(boolean ispresent) {
-        this.ispresent = ispresent;
-    }
-
-
-    public AppUserRole getAppUserRole() {
-        return appUserRole;
-    }
-
-    public void setAppUserRole(AppUserRole appUserRole) {
-        this.appUserRole = appUserRole;
-    }
 
     public long getId() {
         return id;

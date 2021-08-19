@@ -1,5 +1,6 @@
 package com.example.Restourant.Service;
 
+import com.example.Restourant.Exception.UserAlreadyExistsException;
 import com.example.Restourant.Exception.UserNotFoundException;
 import com.example.Restourant.Model.User;
 import com.example.Restourant.Repository.UserRepository;
@@ -19,14 +20,12 @@ public class UserService {
     }
 
     public void save(User user){
-
         userRepository.save(user);
     }
 
 
     public User findByUsername  (String username) throws UserNotFoundException{
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User Not Found username:"+username));
+        return userRepository.findByUsername(username);
     }
 
     public User findById(Long id){

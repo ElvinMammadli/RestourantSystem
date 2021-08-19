@@ -1,5 +1,7 @@
 package com.example.Restourant.Controller;
 
+import com.example.Restourant.Exception.UserAlreadyExistsException;
+import com.example.Restourant.Exception.UserNotFoundException;
 import com.example.Restourant.Model.User;
 import com.example.Restourant.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,13 @@ public class UserController {
 
     @PostMapping("api/1/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody User User){
-        userService.save(User);
+    public void createUser(@RequestBody User requestedUser){
+        User user=userService.findByUsername(requestedUser.getUsername());
+        if(user!=null){
+            throw new UserAlreadyExistsException("User already exists");
+        }else userService.save(requestedUser);
+
+
     }
 
     @GetMapping("/api/1/users")
@@ -29,7 +36,10 @@ public class UserController {
 
     @GetMapping("/api/1/user/name/{username}")
     public User findByUsername(@PathVariable String username){
-        return userService.findByUsername(username);
+        User user =userService.findByUsername(username);
+        if(user==null){
+            throw new UserNotFoundException("User Not Found");
+        }else return user;
     }
 
     @GetMapping("/api/1/users/{id}")
