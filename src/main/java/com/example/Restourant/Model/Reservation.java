@@ -1,6 +1,9 @@
 package com.example.Restourant.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -27,10 +30,14 @@ public class Reservation {
     private Date date;
 
 
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY,targetEntity=Restourant.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_ID",referencedColumnName = "id")
     private Restourant restourant;
 
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = User.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "RESTOURANT_ID",referencedColumnName = "id")
     private User user;

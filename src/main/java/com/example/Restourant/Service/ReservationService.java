@@ -1,17 +1,15 @@
 package com.example.Restourant.Service;
 
+import com.example.Restourant.Exception.ReservationNotFoundException;
 import com.example.Restourant.Model.Reservation;
-import com.example.Restourant.Model.Restourant;
-import com.example.Restourant.Model.User;
 import com.example.Restourant.Repository.ReservationRepository;
 import com.example.Restourant.Repository.RestourantRepository;
 import com.example.Restourant.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static com.example.Restourant.Model.AppUserRole.USER;
 
 @Service
 public class ReservationService {
@@ -27,12 +25,22 @@ public class ReservationService {
         this.userRepository=userRepository;
     }
 
-    public void save(Reservation reservation) {
-        reservationRepository.save(reservation);
-    }
 
     public List<Reservation> getReservations() {
-        return reservationRepository.findAll();
+        List<Reservation> reservations =reservationRepository.findAll();
+        if(reservations==null){
+            throw new ReservationNotFoundException("You haven't got any reservation yet");
+        }
+        else return reservationRepository.findAll();
+    }
+
+    public List<Reservation> getReservationsByUserId(Long id){
+        List<Reservation> reservations =reservationRepository.findAll();
+        if(reservations==null){
+            throw new ReservationNotFoundException("You haven't got any reservation yet");
+        }
+        else return reservationRepository.findAllByUserId(id);
+
     }
 
     public void createReservation(Reservation reservation){
