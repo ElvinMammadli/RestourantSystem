@@ -14,7 +14,7 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(Date date, Restourant restourant, User user) {
+    public Reservation(String date, Restourant restourant, User user) {
 
         this.date=date;
         this.restourant = restourant;
@@ -26,8 +26,8 @@ public class Reservation {
     @Column(name ="id")
     private long id;
 
-    @Column(name="date",unique = true)
-    private Date date;
+    @Column(name="date")
+    private String date;
 
 
 
@@ -66,13 +66,14 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
+
 
     @Override
     public boolean equals(Object o) {
