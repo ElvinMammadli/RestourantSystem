@@ -8,14 +8,14 @@ import java.util.*;
 @Entity
 @Table
 public class Restourant {
-
-    public Restourant(){}
-
     public Restourant( String name, String password, Long reservationNumber) {
 
         this.name = name;
         this.password = password;
         this.reservationNumber = reservationNumber;
+    }
+
+    public Restourant() {
     }
 
     @Id

@@ -1,6 +1,5 @@
 package com.example.Restourant.Service;
 
-import com.example.Restourant.Exception.UserAlreadyExistsException;
 import com.example.Restourant.Exception.UserNotFoundException;
 import com.example.Restourant.Model.User;
 import com.example.Restourant.Repository.UserRepository;

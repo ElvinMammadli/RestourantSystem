@@ -39,6 +39,4 @@ public class RestourantController {
         return restourantService.findRestourants();
     }
 
-
-
 }

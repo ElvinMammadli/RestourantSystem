@@ -25,14 +25,14 @@ public class UserController {
         if(user!=null){
             throw new UserAlreadyExistsException("User already exists");
         }else userService.save(requestedUser);
-
-
     }
+
 
     @GetMapping("/api/1/users")
     public ResponseEntity<List<User>> findUsers(){
         return ResponseEntity.ok(userService.findUsers());
     }
+
 
     @GetMapping("/api/1/user/name/{username}")
     public User findByUsername(@PathVariable String username){
@@ -41,6 +41,7 @@ public class UserController {
             throw new UserNotFoundException("User Not Found");
         }else return user;
     }
+
 
     @GetMapping("/api/1/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){

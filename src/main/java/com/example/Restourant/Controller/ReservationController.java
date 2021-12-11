@@ -30,6 +30,7 @@ public class ReservationController {
         reservationService.createReservation(reservation);
     }
 
+
     @GetMapping("/api/1/reservation/{id}")
     public  List<Reservation>  getReservationsByUserId(@PathVariable Long id){
         List<Reservation> reservations  =reservationService.getReservationsByUserId(id);

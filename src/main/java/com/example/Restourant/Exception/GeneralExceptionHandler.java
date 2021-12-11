@@ -16,7 +16,6 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         String model;
         public JsonResponse() {
         }
-
         public JsonResponse(String message, int httpStatus ,String model) {
             super();
             this.model =model;
